@@ -85,4 +85,5 @@ st.subheader("Enter Applicant Details")
 age = st.number_input("Age", min_value=18, max_value=100)
 income = st.number_input("Applicant Income")
 co_income = st.number_input("Coapplicant Income")
-dependents = st.number
+dependents = st.number_input("Dependents", min_value=0, max_value=10)
+
