@@ -87,3 +87,5 @@ income = st.number_input("Applicant Income")
 co_income = st.number_input("Coapplicant Income")
 dependents = st.number_input("Dependents", min_value=0, max_value=10)
 
+st.button("Predict Loan Status")
+
