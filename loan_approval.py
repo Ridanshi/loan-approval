@@ -89,3 +89,35 @@ dependents = st.number_input("Dependents", min_value=0, max_value=10)
 
 st.button("Predict Loan Status")
 
+if st.button("Predict Loan Status"):
+
+    # Create minimal input dictionary (must match training columns)
+    input_data = pd.DataFrame([{
+        "Age": age,
+        "Applicant_Income": income,
+        "Coapplicant_Income": co_income,
+        "Dependents": dependents,
+        "Education_Level": 0,
+        "Credit_Score": 650,
+        "Existing_Loans": 1,
+        "DTI_Ratio": 0.3,
+        "Savings": 5000,
+        "Collateral_Value": 20000,
+        "Loan_Amount": 15000
+    }])
+
+    # Add missing one-hot columns with 0
+    for col in X.columns:
+        if col not in input_data.columns:
+            input_data[col] = 0
+
+    input_data = input_data[X.columns]
+
+    input_scaled = scaler.transform(input_data)
+
+    prediction = model.predict(input_scaled)
+
+    if prediction[0] == 1:
+        st.success("✅ Loan Approved")
+    else:
+        st.error("❌ Loan Not Approved")
